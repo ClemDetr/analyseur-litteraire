@@ -6,9 +6,12 @@ from texte import Texte
 class Corpus:
 
     def __init__(self, name: str):
-        self._name = name
+        self.name = name
         self._textes = list[Texte] = []
     
-    @property
-    def name(self) -> str:
-        return self._name
+    def ajouter_texte(self, texte: Texte) ->None:
+        self._textes.append(texte)
+    
+    def total_mots(self) -> int:
+        return sum(texte.nombre_mots() for texte in self._textes)
+    
