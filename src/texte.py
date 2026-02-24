@@ -4,3 +4,5 @@ class Texte :
         self.auteur = auteur
         self.contenu = contenu
         self.annee = annee
+    def nombre_mots(self):
+        return sum(len(self.contenu.split()))
