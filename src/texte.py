@@ -14,3 +14,8 @@ class Texte :
         self._titre = nouveau.strip()
     def nombre_mots(self) -> int:
         return len(self._contenu.split())
+    def mots_uniques(self) -> set[str]:
+        self.mots_uniques = set[]
+        for mot in self._contenu.split :
+            if mot not in self.mots_uniques:
+                self.mots_uniques.add(mot)
