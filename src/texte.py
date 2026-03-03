@@ -15,8 +15,19 @@ class Texte :
         return f"{self.titre} ({self.auteur}, {self.annee})"
 
     def __repr__(self) -> str:
-        return (f"Texte(titre = {self.titre})"
-                f"auteur = {self.auteur}, année = {self.annee}")
+        return (f"Texte(titre = {self.titre!r})"
+                f"auteur = {self.auteur!r}, année = {self.annee}")
+
+    def __eq__(self, other) ->bool:
+        if not isinstance(other, Texte):
+            return False
+        return self.titre == other.titre and self.auteur == other.auteur
+
+    def __lt__(self, other):
+        if not isinstance(other, Texte):
+            return False
+        return self.annee < other.annee
+
     @property
     def titre(self) -> str:
         """appel titre"""
@@ -45,35 +56,36 @@ class Texte :
         """compteur fréquence"""
         frequence = Counter(self.contenu.split())
         return frequence
+if __name__ == "__main__":
 
 
 
-texte = Texte("Droit de la femme", "eMILE", """A LA REINE.
+    texte1 = Texte("Droit de la femme", "eMILE", """A LA REINE.
 
 
-  MADAME,
+    MADAME,
 
-Peu faite au langage que l'on tient aux Rois, je n'emploierai point
-l'adulation des Courtisans pour vous faire hommage de cette singulière
-production. Mon but, Madame, est de vous parler franchement; je n'ai
-pas attendu, pour m'exprimer ainsi, l'époque de la Liberté: je me
-suis montrée avec la même énergie dans un temps où l'aveuglement des
-Despotes punissait une si noble audace.
+    Peu faite au langage que l'on tient aux Rois, je n'emploierai point
+    l'adulation des Courtisans pour vous faire hommage de cette singulière
+    production. Mon but, Madame, est de vous parler franchement; je n'ai
+    pas attendu, pour m'exprimer ainsi, l'époque de la Liberté: je me
+    suis montrée avec la même énergie dans un temps où l'aveuglement des
+    Despotes punissait une si noble audace.
 
-Lorsque tout l'Empire vous accusait et vous rendait responsable de ses
-calamités, moi seule, dans un temps de trouble et d'orage, j'ai eu la
-force de prendre votre défense. Je n'ai jamais pu me persuader qu'une
-Princesse, élevée au sein des grandeurs, eût tous les vices de la
-bassesse.
+    Lorsque tout l'Empire vous accusait et vous rendait responsable de ses
+    calamités, moi seule, dans un temps de trouble et d'orage, j'ai eu la
+    force de prendre votre défense. Je n'ai jamais pu me persuader qu'une
+    Princesse, élevée au sein des grandeurs, eût tous les vices de la
+    bassesse.
 
-Oui, Madame, lorsque j'ai vu le glaive levé sur vous, j'ai jeté mes
-observations entre ce glaive et la victime; mais aujourd'hui que je
-vois qu'on observe de près la foule de mutins soudoyée, & qu'elle est
-retenue par la crainte des loix, je vous dirai, Madame, ce que je ne
-vous aurois pas dit alors.
-""", 1200)
+    Oui, Madame, lorsque j'ai vu le glaive levé sur vous, j'ai jeté mes
+    observations entre ce glaive et la victime; mais aujourd'hui que je
+    vois qu'on observe de près la foule de mutins soudoyée, & qu'elle est
+    retenue par la crainte des loix, je vous dirai, Madame, ce que je ne
+    vous aurois pas dit alors.
+    """, 1200)
+    texte2 = Texte("asdfghjklllllll","Maurice Chevalier", "rien.", 0)
 
-print(texte.mots_uniques())
-print(texte.frequences())
-print(texte)
-print(repr(texte))
+    liste = [texte1, texte2]
+    for l in sorted(liste):
+        print(l)
