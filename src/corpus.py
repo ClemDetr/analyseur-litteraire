@@ -23,5 +23,5 @@ class Corpus:
         mot_lower = mot.lower()
         liste_texte = list()
         for texte in self._textes :
-            if mot_lower in texte._contenu_split:
+            if mot_lower in texte.contenu_split:
                 liste_texte.append(texte.titre())

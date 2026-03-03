@@ -8,8 +8,7 @@ class Texte :
     def __init__(self, titre: str, auteur: str, contenu: str, annee: int):
         self._titre = titre
         self.auteur = auteur
-        self._contenu = contenu
-        self._contenu_split = contenu.lower().replace("\n"," ").split(" ")
+        self.contenu = contenu.lower().replace("\n"," ")
         self.annee = annee
 
     @property
@@ -25,12 +24,12 @@ class Texte :
 
     def nombre_mots(self) -> int:
         """compte mots"""
-        return len(self._contenu_split)
+        return len(self.contenu.split())
 
     def mots_uniques(self) -> set[str]:
         """index mots uniques"""
         mots_uniques: set[str] = set()
-        counter = Counter(self._contenu_split)
+        counter = Counter(self.contenu.split())
         for mot, occurences in counter.items():
             if occurences == 1:
                 mots_uniques.add(mot)
@@ -38,7 +37,7 @@ class Texte :
 
     def frequences(self) -> dict[str, int]:
         """compteur fréquence"""
-        frequence = Counter(self._contenu_split)
+        frequence = Counter(self.contenu.split())
         return frequence
 
 
