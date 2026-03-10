@@ -44,6 +44,10 @@ class Texte :
         """compte mots"""
         return len(self.contenu.lower().replace("\n"," ").split())
 
+    def nombre_phrases(self) -> int:
+        """compte phrases"""
+        return len(self.contenu.lower().replace("\n"," ").split("."))
+
     def mots_uniques(self) -> set[str]:
         """index mots uniques"""
         mots_uniques: set[str] = set()
