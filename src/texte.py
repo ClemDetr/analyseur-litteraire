@@ -1,6 +1,6 @@
 """class Texte"""
 from collections import Counter
-
+import re
 
 class Texte :
     """objet Texte"""
@@ -8,7 +8,8 @@ class Texte :
     def __init__(self, titre: str, auteur: str, contenu: str, annee: int):
         self._titre = titre
         self.auteur = auteur
-        self.contenu = contenu.lower().replace("\n"," ")
+        self.contenu = contenu
+        self.mots = re.sub(r"\s+"," ",self.contenu).split()
         self.annee = annee
 
     def __str__ (self) -> str:
@@ -41,12 +42,12 @@ class Texte :
 
     def nombre_mots(self) -> int:
         """compte mots"""
-        return len(self.contenu.split())
+        return len(self.contenu.lower().replace("\n"," ").split())
 
     def mots_uniques(self) -> set[str]:
         """index mots uniques"""
         mots_uniques: set[str] = set()
-        counter = Counter(self.contenu.split())
+        counter = Counter(self.contenu.lower().replace("\n"," ").split())
         for mot, occurences in counter.items():
             if occurences == 1:
                 mots_uniques.add(mot)
@@ -54,8 +55,18 @@ class Texte :
 
     def frequences(self) -> dict[str, int]:
         """compteur fréquence"""
-        frequence = Counter(self.contenu.split())
+        frequence = Counter(self.contenu.lower().replace("\n"," ").split())
         return frequence
+
+    def resume(self) -> str :
+        """resume texte"""
+        result = " ".join(self.mots[:50]) + " ..."
+        print(result)
+        return result
+
+
+
+
 if __name__ == "__main__":
 
 
@@ -89,3 +100,5 @@ if __name__ == "__main__":
     liste = [texte1, texte2]
     for l in sorted(liste):
         print(l)
+
+    texte1.resume()
