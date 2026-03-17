@@ -86,7 +86,7 @@ texte1 = Texte("Droit de la femme", "eMILE", """A LA REINE.
     production. Mon but, Madame, est de vous parler franchement; je n'ai
     pas attendu, pour m'exprimer ainsi, l'époque de la Liberté: je me
     suis montrée avec la même énergie dans un temps où l'aveuglement des
-    Despotes punissait une si noble audace.
+    Despotes punissait une si noble audace. Modifié pour git.
 
     Lorsque tout l'Empire vous accusait et vous rendait responsable de ses
     calamités, moi seule, dans un temps de trouble et d'orage, j'ai eu la
