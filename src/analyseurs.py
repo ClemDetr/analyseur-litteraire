@@ -28,7 +28,7 @@ class AnalyseurFreq(AnalyseurTexte):
 class AnalyseurLongueur(AnalyseurTexte):
     """analyseur de longueur"""
     def analyser(self, texte: "Texte") -> dict:
-        return f"""nombre de mots : {texte.nombre_mots()}, nombre de phrases : {texte.nombre_phrases()}, """
+        return f"""nombre mot : {texte.nombre_mots()}, nombre phrase : {texte.nombre_phrases()}, """
     def analyser_corpus(self, docs: list["Texte"]) -> list[dict]:
         """analyseur de corpus"""
         effectif = 0
