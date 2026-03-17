@@ -1,6 +1,7 @@
 """class Texte"""
 from collections import Counter
 import re
+from exceptions import TexteVideError
 
 class Texte :
     """objet Texte"""
@@ -8,8 +9,15 @@ class Texte :
     def __init__(self, titre: str, auteur: str, contenu: str, annee: int):
         self._titre = titre
         self.auteur = auteur
-        self.contenu = contenu
-        self.mots = re.sub(r"\s+"," ",self.contenu).split()
+        try:
+            if contenu :
+                self.contenu = contenu
+                self.mots = re.sub(r"\s+"," ",self.contenu).split()
+            else :
+                raise TexteVideError(self.titre)
+        except TexteVideError as e:
+            print(f"Error : {e}")
+
         self.annee = annee
 
     def __str__ (self) -> str:
@@ -99,10 +107,8 @@ if __name__ == "__main__":
     retenue par la crainte des loix, je vous dirai, Madame, ce que je ne
     vous aurois pas dit alors.
     """, 1200)
-    texte2 = Texte("asdfghjklllllll","Maurice Chevalier", "rien.", 0)
+    texte2 = Texte("asdfghjklllllll","Maurice Chevalier","", 0)
 
     liste = [texte1, texte2]
     for l in sorted(liste):
         print(l)
-
-    texte1.resume()
