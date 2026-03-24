@@ -1,16 +1,19 @@
 """
 Corpus est un conteneur de texte
 """
+
 from collections.abc import Iterator
-from texte import Texte
+
 from export import ExportateurHTML
+from texte import Texte
+
 
 class Corpus:
     """conteneur de classe"""
 
     def __init__(self, name: str):
         self.name = name
-        self._textes : list[Texte] = []
+        self._textes: list[Texte] = []
         self.export = ExportateurHTML()
 
     def __len__(self):
@@ -25,7 +28,7 @@ class Corpus:
     def __contains__(self, titre: str) -> bool:
         return any(texte.titre == titre for texte in self._textes)
 
-    def __add__(self, other:"Corpus"):
+    def __add__(self, other: "Corpus"):
         nouveau = Corpus(f"{self.name} + {other.name}")
         for texte in self._textes:
             nouveau.ajouter_texte(texte)
@@ -33,8 +36,7 @@ class Corpus:
             nouveau.ajouter_texte(texte)
         return nouveau
 
-
-    def ajouter_texte(self, texte: Texte) ->None:
+    def ajouter_texte(self, texte: Texte) -> None:
         """ajoute un texte"""
         self._textes.append(texte)
 
@@ -45,16 +47,19 @@ class Corpus:
     def rechercher_mot(self, mot: str):
         """recherche mot dans texte du corpus"""
         mot_lower = mot.lower()
-        for texte in self._textes :
+        for texte in self._textes:
             if mot_lower in texte.contenu.split():
                 print(texte.titre)
 
 
 if __name__ == "__main__":
-
     roman = Corpus("Romans")
 
-    roman.ajouter_texte(Texte("Droit de la femme", "eMILE", """A LA REINE.
+    roman.ajouter_texte(
+        Texte(
+            "Droit de la femme",
+            "eMILE",
+            """A LA REINE.
 
 
     MADAME,
@@ -77,17 +82,20 @@ if __name__ == "__main__":
     vois qu'on observe de près la foule de mutins soudoyée, & qu'elle est
     retenue par la crainte des loix, je vous dirai, Madame, ce que je ne
     vous aurois pas dit alors.
-    """, 1200))
-    roman.ajouter_texte(Texte("asdfghjklllllll","Maurice Chevalier", "rien.", 0))
-
+    """,
+            1200,
+        )
+    )
+    roman.ajouter_texte(Texte("asdfghjklllllll", "Maurice Chevalier", "rien.", 0))
 
     for t in roman:
         print(f"-{t.titre}")
 
-
     poesie = Corpus("Poésie")
     poesie.ajouter_texte(Texte("Fleurs du Mal", "Baudelaire", "Aïe, ça pique", 2005))
-    poesie.ajouter_texte(Texte("Introduction à la poésie", "Les Nuls", "ça rime, c'est bien", 1989))
+    poesie.ajouter_texte(
+        Texte("Introduction à la poésie", "Les Nuls", "ça rime, c'est bien", 1989)
+    )
 
     for p in poesie:
         print(f"-{p.titre}")
