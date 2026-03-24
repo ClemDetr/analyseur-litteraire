@@ -1,11 +1,97 @@
 [project]
+
+
 name = "analyseur-litteraire"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "pytest>=9.0.2",
-    "ruff>=0.15.1",
+description = "un analyseur littéraire"
+authors = [
+    { name = "Clem", email = "clemence.detroyat@gmail.com" },
 ]
+readme = "README.md"
+requires-python = ">=3.13"
+license = "None"
+dependencies = [
+    "pylint>=4.0.5",
+]
+
+
+[dependency-groups]
+dev = ["mypy>=1.13", "pytest>=8.0", "ruff>=0.8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+mypy_path = ["src"]
+
+[tool.ruff]
+target-version = "py313"
+src = ["src"]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D",
+    "ANN",
+    "S603",
+    "COM812",
+    "ISC001",
+    "T201",
+    "S607",
+    "TRY003",
+    "S101",
+    "S606",
+    "FBT001",
+    "RUF001",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/test/*" = [
+    "ANN001",
+    "ANN002",
+    "ANN003",
+    "ANN003",
+    "ANN201",
+    "ANN202",
+    "ARG001",
+    "ARG002",
+    "BLE001",
+    "D",
+    "E402",
+    "E501",
+    "F401",
+    "F841",
+    "INP001",
+    "N801",
+    "PGH003",
+    "PLC0415",
+    "PLR0913",
+    "PLR0915",
+    "PLR2004",
+    "PT011",
+    "S101",
+    "S101",
+    "S106",
+    "S110",
+    "S112",
+    "S603",
+    "S607",
+    "S607",
+    "SLF001",
+    "T201",
+    "TC002",
+    "TC003",
+]
+
+
+[tool.ruff.format]
+docstring-code-format = true
+
+
+[tool.pylint.main]
+source-roots = ["./src"]
+ignore-paths = '^.venv/.*$'
 
